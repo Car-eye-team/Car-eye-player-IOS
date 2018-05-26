@@ -31,7 +31,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.reader = [[RTSPStreamReader alloc] init];
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor blackColor];
     _glView = [[KxMovieGLView alloc] initWithFrame:self.bounds];
     [self addSubview:_glView];
     _videoFrames = [NSMutableArray array];
@@ -49,8 +49,8 @@
         // 填充音频
         
     };
-
-
+    
+    
 }
 - (instancetype)init {
     _tickCorrectionTime = 0;
@@ -69,6 +69,25 @@
 
 
 - (void)renderWithURL:(NSString *)url {
+    if (self.reader) {
+        [self.reader stop];
+        [self.glView flush];
+        self.reader = nil;
+    }
+    __weak PlayerView *weakSelf = self;
+    self.reader = [[RTSPStreamReader alloc] init];
+    self.reader.succCall = ^{
+        NSLog(@"获得frame");
+        [weakSelf dealStackTopFrame];
+    };
+    self.reader.getAVFrameSuccCall = ^(KxMovieFrame *frame) {
+        NSLog(@"\n------------------------------\n获得普通帧\n----------------------------\n");
+        NSLog(@"%@",frame);
+        [weakSelf pushFrame:frame]; // 填充视频
+        [weakSelf startAudio];
+        // 填充音频
+        
+    };
     [self.reader startWithURL:url];
 }
 
@@ -108,7 +127,7 @@
             [_videoFrames addObject:(KxVideoFrame*)frame];
             _bufferdDuration = frame.position - ((KxVideoFrameRGB *)_videoFrames.firstObject).position;
         }
-
+        
     }else if (frame.type == KxMovieFrameTypeAudio) {
         @synchronized(_audioFrames) {
             if (!self.audioPlaying) {
@@ -133,21 +152,21 @@
             [_videoFrames removeObjectAtIndex:0];
         }
     }
-        if (frame != nil) {
-            duration = [self renderWithFrame:frame];
-            NSTimeInterval correction = [self tickCorrection];
-            NSTimeInterval interval = MAX(duration + correction, 0.01);
-            if (interval >= 0.035) {
-                interval = interval / 2;
-            }
-            
-            time = interval;
+    if (frame != nil) {
+        duration = [self renderWithFrame:frame];
+        NSTimeInterval correction = [self tickCorrection];
+        NSTimeInterval interval = MAX(duration + correction, 0.01);
+        if (interval >= 0.035) {
+            interval = interval / 2;
         }
         
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, time * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^{
-            [self dealStackTopFrame];
-        });
+        time = interval;
+    }
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, time * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^{
+        [self dealStackTopFrame];
+    });
 }
 
 #pragma mark - 处理音频数据
@@ -235,3 +254,4 @@
 
 
 @end
+
