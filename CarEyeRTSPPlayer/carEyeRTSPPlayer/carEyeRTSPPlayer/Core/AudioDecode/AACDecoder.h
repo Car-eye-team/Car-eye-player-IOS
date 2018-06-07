@@ -24,7 +24,16 @@ extern "C" {
     // 创建aac解码器
     void *aac_decoder_create(enum AVCodecID codecid, int sample_rate, int channels, int bit_rate);
     
-    // 解码一帧音频数据
+    /**
+      解码一帧数据
+
+     @param pParam AACDFFmpeg
+     @param pData AVPacket.data 数据包内容
+     @param nLen  AVPacket.size 数据包大小
+     @param pPCM  PCM数据
+     @param outLen 回传pcm 数据长度
+     @return
+     */
     int aac_decode_frame(void *pParam, unsigned char *pData, int nLen, unsigned char *pPCM, unsigned int *outLen);
     
     // 关闭aac解码器

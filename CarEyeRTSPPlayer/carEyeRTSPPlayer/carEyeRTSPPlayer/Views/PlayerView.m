@@ -40,14 +40,13 @@
     self.reader.succCall = ^{
         NSLog(@"获得frame");
         [weakSelf dealStackTopFrame];
+        [weakSelf startAudio];
     };
     self.reader.getAVFrameSuccCall = ^(KxMovieFrame *frame) {
         NSLog(@"\n------------------------------\n获得普通帧\n----------------------------\n");
         NSLog(@"%@",frame);
         [weakSelf pushFrame:frame]; // 填充视频
-        [weakSelf startAudio];
         // 填充音频
-        
     };
     
     
@@ -79,12 +78,13 @@
     self.reader.succCall = ^{
         NSLog(@"获得frame");
         [weakSelf dealStackTopFrame];
+        [weakSelf startAudio];
+
     };
     self.reader.getAVFrameSuccCall = ^(KxMovieFrame *frame) {
         NSLog(@"\n------------------------------\n获得普通帧\n----------------------------\n");
         NSLog(@"%@",frame);
         [weakSelf pushFrame:frame]; // 填充视频
-        [weakSelf startAudio];
         // 填充音频
         
     };
@@ -95,9 +95,9 @@
 #pragma mark - 播放控制
 
 - (void)startAudio {
-    self.audioPlaying = YES;
-    [CarEyeAudioPlayer sharedInstance].sampleRate = _reader.frameInfo->codec;
-    [CarEyeAudioPlayer sharedInstance].channel = _reader.frameInfo->channels;
+//    self.audioPlaying = YES;
+    [CarEyeAudioPlayer sharedInstance].sampleRate = _reader.mediaInfo->u32AudioSamplerate;
+    [CarEyeAudioPlayer sharedInstance].channel = _reader.mediaInfo->u32AudioChannel;
     [[CarEyeAudioPlayer sharedInstance] play];
     __weak PlayerView *weakSelf = self;
     [CarEyeAudioPlayer sharedInstance].source = self;

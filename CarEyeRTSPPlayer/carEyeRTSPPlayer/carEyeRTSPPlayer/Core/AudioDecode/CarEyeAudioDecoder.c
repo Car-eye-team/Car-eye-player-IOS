@@ -32,13 +32,13 @@ CarEyeAudioHandle* CarEyeAudioDecoder(int code, int sample_rate, int channels, i
     return pHandle;
 }
 
-CarEyeAudioHandle *CarEyeAudioDecoderCreate(CarEye_RtspFrameInfo info) {
+CarEyeAudioHandle *CarEyeAudioDecoderCreate(CarEye_MediaInfo info) {
     CarEyeAudioHandle *handle = malloc(sizeof(CarEyeAudioHandle));
-    handle->code = info.codec;
+    handle->code = info.u32AudioCodec;
     handle->pContext = 0;
-    if (info.codec == CAREYE_ACODE_AAC || info.codec == CAREYE_ACODE_G726) {
+    if (info.u32AudioCodec == CAREYE_ACODE_AAC || info.u32AudioCodec == CAREYE_ACODE_G726) {
         av_register_all();
-        handle->pContext = aac_decoder_create(info.codec, info.sample_rate, info.channels, 16);
+        handle->pContext = aac_decoder_create(info.u32AudioCodec, info.u32AudioSamplerate, info.u32AudioChannel, 16);
         if (NULL == handle->pContext) {
             free(handle);
             return NULL;

@@ -9,6 +9,7 @@
 #import "PlayerViewController.h"
 #import "PlayerView.h"
 #import "CarEyeRTSPClientAPI.h"
+#import "CarEyeAudioPlayer.h"
 
 @interface PlayerViewController ()
 //@property (strong, nonatomic)  ;
@@ -22,6 +23,7 @@
     CarEye_RtspActivate("6A59754D6A3469576B5A73414D433158714E4C4F6B76464659584E3555477868655756794C6D56345A536C58444661672F704C67523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D");
     //    [self.playerView renderWithURL:@"rtsp://184.72.239.149/vod/mp4://BigBuckBunny_175k.mov"];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
+    self.playerView.audioPlaying = YES;
     self.navigationItem.rightBarButtonItem = item;
     
 }
@@ -37,6 +39,7 @@
         UITextField *tf = alertCtr.textFields.firstObject;
         NSString* url = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         [wself.playerView renderWithURL:url];
+        [[CarEyeAudioPlayer sharedInstance] activateAudioSession];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     [alertCtr addAction:action];

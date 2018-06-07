@@ -67,7 +67,7 @@ int *stopRecord = (int *)malloc(sizeof(int));// 停止录像
     void *_videoDecHandle;  // 视频解码句柄
     CarEyeAudioHandle *_audioDecHandle;  // 音频解码句柄
     
-    CarEye_RtspFrameInfo *_frameInfo;   // 媒体信息
+    CarEye_MediaInfo *_mediaInfo;   // 媒体信息
     
     std::multiset<FrameInfo *, com> videoFrameSet;
     std::multiset<FrameInfo *, com> audioFrameSet;
@@ -105,7 +105,30 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
     }
     
     RTSPStreamReader *reader = (__bridge RTSPStreamReader *)userPtr;
+    if (frameType == CAREYE_INFO_FLAG) {
+        CarEye_MediaInfo mediaInfo = *((CarEye_MediaInfo *)pBuf);
+//        NSLog(@"RTSP DESCRIBE Get Media Info: type:%u fps:%u codecType:%u channel:%u sampleRate:%u \n",
+//              mediaInfo.ty,
+//              mediaInfo.fps,
+//              mediaInfo.codec,
+//              mediaInfo.channels,
+//              mediaInfo.bits_per_sample);
+        if (mediaInfo.u32AudioChannel <= 0 || mediaInfo.u32AudioChannel > 2) {
+                 mediaInfo.u32AudioChannel = 1;
+        }
+        [reader recvAudioInfo:&mediaInfo];
+    }else if (frameType == CAREYE_AFRAME_FLAG) { // 音频帧
+        [reader pushFrame:pBuf frameInfo:frameInfo type:frameType];
+    }else if (frameType == CAREYE_VFRAME_FLAG) { // 视频帧
+        if (frameInfo->type == VIDEO_FRAME_I) {
+            
+        }
+        if (frameInfo->codec == CAREYE_VCODE_H264) {
+            [reader pushFrame:pBuf frameInfo:frameInfo type:frameType];
+        }
+    }
     
+   /*
     if (frameInfo != NULL) {
         if (frameType == CAREYE_AFRAME_FLAG) {// EASY_SDK_AUDIO_FRAME_FLAG音频帧标志
             [reader pushFrame:pBuf frameInfo:frameInfo type:frameType];
@@ -116,7 +139,7 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
     } else {
         if (frameType == CAREYE_INFO_FLAG) {// CAREYE_INFO_FLAG媒体信息
             CarEye_RtspFrameInfo mediaInfo = *((CarEye_RtspFrameInfo *)pBuf);
-            NSLog(@"RTMP DESCRIBE Get Media Info: type:%u fps:%u codecType:%u channel:%u sampleRate:%u \n",
+            NSLog(@"RTSP DESCRIBE Get Media Info: type:%u fps:%u codecType:%u channel:%u sampleRate:%u \n",
                   mediaInfo.type,
                   mediaInfo.fps,
                   mediaInfo.codec,
@@ -125,7 +148,7 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
             [reader recvAudioInfo:&mediaInfo];
         }
     }
-    
+    */
     return 0;
 }
 #pragma mark - init
@@ -144,6 +167,7 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
         //        _decoder = [[HWVideoDecoder alloc] initWithDelegate:self];
         _decoder = [[GPUDecoder alloc] init];
         _decoder.delegate = self;
+        self.enableAudio = YES;
 
     }
     return self;
@@ -176,13 +200,11 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
         return;
     }
     
-    pthread_mutex_lock(&mutexChan);
     if (rtspHandle != NULL) {
         CarEye_RtspEventRegister(rtspHandle, NULL);
         CarEye_RtspStop(rtspHandle);// 关闭网络流
     }
-    pthread_mutex_unlock(&mutexChan);
-    
+
     _running = false;
     [self.videoThread cancel];
     [self.audioThread cancel];
@@ -366,6 +388,9 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
 }
 */
 #pragma mark - 音频处理
+- (void)setMediaInfo:(CarEye_MediaInfo *)mediaInfo {
+    _mediaInfo = mediaInfo;
+}
 - (void)runloopForAudio {
     
     while (_running) {
@@ -389,28 +414,32 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
         pthread_mutex_unlock(&mutexAudioFrame);
         // ------------ 解锁mutexFrame ------------
         
-        //        if (self.enableAudio) {
-        [self decodeAudioFrame:frame];
-        //        }
+        if (self.enableAudio) {
+            [self decodeAudioFrame:frame];
+        }
         
         delete []frame->pBuf;
         delete frame;
     }
     
     [self removeAudioFrameSet];
-    
+//    pthread_mutex_lock(<#pthread_mutex_t * _Nonnull#>)
     if (_audioDecHandle != NULL) {
         CarEyeAudioDecodeClose(_audioDecHandle);
         _audioDecHandle = NULL;
     }
+    
 }
 
 
 - (void)decodeAudioFrame:(FrameInfo *)audioInfo {
     if (_audioDecHandle == NULL) {
-        _audioDecHandle = CarEyeAudioDecoderCreate(*(_frameInfo));
+        _audioDecHandle = CarEyeAudioDecoderCreate(*(_mediaInfo));
+//        _audioDecHandle = CarEyeAudioDecoder(self.mediaInfo->u32AudioCodec, self.mediaInfo->u32AudioSamplerate, self.mediaInfo->u32AudioChannel, 16);
     }
-    
+    if (_audioDecHandle == NULL) {
+        return;
+    }
     unsigned char pcmBuf[10 * 1024] = { 0 };
     int pcmLen = 0;
     int ret = CarEyeAudioDecode((CarEyeAudioHandle *)_audioDecHandle, audioInfo->pBuf, 0, audioInfo->frameLen, pcmBuf, &pcmLen);
@@ -534,12 +563,16 @@ int read_audio_packet(void *opaque, uint8_t *buf, int buf_size) {
 
 #pragma mark - private method
 
-- (void)readMediaFrameInfo:(CarEye_RtspFrameInfo *)info {
-    _frameInfo = info;
+- (void)readMediaFrameInfo:(CarEye_MediaInfo *)info {
+    self.mediaInfo = info;
 }
 // 获得媒体类型
-- (void)recvAudioInfo:(CarEye_RtspFrameInfo *)info {
-    _frameInfo = info;
+- (void)recvAudioInfo:(CarEye_MediaInfo *)info {
+    self.mediaInfo = info;
+    if (_audioDecHandle == NULL) {
+                _audioDecHandle = CarEyeAudioDecoderCreate(*(_mediaInfo));
+//        _audioDecHandle = CarEyeAudioDecoder(self.mediaInfo->u32AudioCodec, self.mediaInfo->u32AudioSamplerate, self.mediaInfo->u32AudioChannel, 16);
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         if (self.succCall) {
             self.succCall();
@@ -673,8 +706,8 @@ int read_audio_packet(void *opaque, uint8_t *buf, int buf_size) {
 
 #pragma mark - getter/setter
 
-- (CarEye_RtspFrameInfo *)frameInfo {
-    return _frameInfo;
+- (CarEye_MediaInfo *)mediaInfo {
+    return _mediaInfo;
 }
 /*
 // 设置录像的路径

@@ -21,8 +21,8 @@ extern "C" {
     } CarEyeAudioHandle;
     
     // 创建音频解码器
-//    CarEyeAudioHandle* CarEyeAudioDecoder(int code, int sample_rate, int channels, int sample_bit);
-    CarEyeAudioHandle *CarEyeAudioDecoderCreate(CarEye_RtspFrameInfo info);
+    CarEyeAudioHandle* CarEyeAudioDecoder(int code, int sample_rate, int channels, int sample_bit);
+    CarEyeAudioHandle *CarEyeAudioDecoderCreate(CarEye_MediaInfo info);
     
     // 解码一帧音频数据
     int CarEyeAudioDecode(CarEyeAudioHandle* pHandle, unsigned char* buffer, int offset, int length, unsigned char* pcm_buffer, int* pcm_length);

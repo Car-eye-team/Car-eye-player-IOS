@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Car eye 车辆管理平台: www.car-eye.cn
  * Car eye 开源网址: https://github.com/Car-eye-team
  * CarEyeRTSPClientAPI.h
@@ -119,6 +119,26 @@ typedef struct __RTSP_FRAME_INFO_T
 	// 丢包率
 	float			losspacket;
 }CarEye_RtspFrameInfo;
+/* 媒体信息 */
+typedef struct
+{
+    unsigned int u32VideoCodec;    /* 视频编码类型 */
+    unsigned int u32VideoFps;    /* 视频帧率 */
+    
+    unsigned int u32AudioCodec;    /* 音频编码类型 */
+    unsigned int u32AudioSamplerate;  /* 音频采样率 */
+    unsigned int u32AudioChannel;   /* 音频通道数 */
+    unsigned int u32AudioBitsPerSample;  /* 音频采样精度 */
+    
+    unsigned int u32VpsLength;   /* VPS 帧长度*/
+    unsigned int u32SpsLength;   /* SPS 帧长度 */
+    unsigned int u32PpsLength;   /* PPS 帧长度 */
+    unsigned int u32SeiLength;   /* SEI 帧长度 */
+    unsigned char  u8Vps[255];   /* VPS 帧内容 */
+    unsigned char  u8Sps[255];   /* SPS 帧内容 */
+    unsigned char  u8Pps[128];   /* PPS 帧内容 */
+    unsigned char  u8Sei[128];   /* SEI 帧内容 */
+}CarEye_MediaInfo;
 
 // 连接类型定义
 typedef enum __RTP_CONNECT_TYPE__
