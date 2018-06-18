@@ -107,12 +107,7 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
     RTSPStreamReader *reader = (__bridge RTSPStreamReader *)userPtr;
     if (frameType == CAREYE_INFO_FLAG) {
         CarEye_MediaInfo mediaInfo = *((CarEye_MediaInfo *)pBuf);
-//        NSLog(@"RTSP DESCRIBE Get Media Info: type:%u fps:%u codecType:%u channel:%u sampleRate:%u \n",
-//              mediaInfo.ty,
-//              mediaInfo.fps,
-//              mediaInfo.codec,
-//              mediaInfo.channels,
-//              mediaInfo.bits_per_sample);
+
         if (mediaInfo.u32AudioChannel <= 0 || mediaInfo.u32AudioChannel > 2) {
                  mediaInfo.u32AudioChannel = 1;
         }
@@ -127,28 +122,6 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
             [reader pushFrame:pBuf frameInfo:frameInfo type:frameType];
         }
     }
-    
-   /*
-    if (frameInfo != NULL) {
-        if (frameType == CAREYE_AFRAME_FLAG) {// EASY_SDK_AUDIO_FRAME_FLAG音频帧标志
-            [reader pushFrame:pBuf frameInfo:frameInfo type:frameType];
-        } else if (frameType == CAREYE_VFRAME_FLAG &&
-                   frameInfo->codec == CAREYE_VCODE_H264) { // H264视频编码
-            [reader pushFrame:pBuf frameInfo:frameInfo type:frameType];
-        }
-    } else {
-        if (frameType == CAREYE_INFO_FLAG) {// CAREYE_INFO_FLAG媒体信息
-            CarEye_RtspFrameInfo mediaInfo = *((CarEye_RtspFrameInfo *)pBuf);
-            NSLog(@"RTSP DESCRIBE Get Media Info: type:%u fps:%u codecType:%u channel:%u sampleRate:%u \n",
-                  mediaInfo.type,
-                  mediaInfo.fps,
-                  mediaInfo.codec,
-                  mediaInfo.channels,
-                  mediaInfo.bits_per_sample);
-            [reader recvAudioInfo:&mediaInfo];
-        }
-    }
-    */
     return 0;
 }
 #pragma mark - init
@@ -219,7 +192,7 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
         int ret = CarEye_RtspCreate(&rtspHandle); // 创建句柄
         
         if (ret != 0) {
-            NSLog(@"EasyRTSP_Init err %d", ret);
+        
         } else {
             /* 注册句柄对应的回调函数 */
             CarEye_RtspEventRegister(rtspHandle, revRTSPStreamCallback);
@@ -409,7 +382,7 @@ int revRTSPStreamCallback( int channelId, void *userPtr, CarEye_FrameFlag frameT
         }
         
         FrameInfo *frame = *(audioFrameSet.begin());
-        audioFrameSet.erase(audioFrameSet.begin());// erase()函数的功能是用来删除容器中的元素
+        audioFrameSet.erase(audioFrameSet.begin());
         
         pthread_mutex_unlock(&mutexAudioFrame);
         // ------------ 解锁mutexFrame ------------
@@ -607,56 +580,6 @@ int read_audio_packet(void *opaque, uint8_t *buf, int buf_size) {
         videoFrameSet.insert(frameInfo);
         pthread_mutex_unlock(&mutexVideoFrame);  // 解锁
     }
-   /*
-    // 录像：保存视频的内容
-    if (_recordFilePath) {
-        
-        if (isKeyFrame == 0) {
-            if (info->type == EASY_SDK_VIDEO_FRAME_I) {// 视频帧类型
-                isKeyFrame = 1;
-                
-                dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
-                dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, NULL);
-                dispatch_after(time, queue, ^{
-                    // 开始录像
-                    *stopRecord = 0;
-                    muxer([_recordFilePath UTF8String], stopRecord, read_video_packet, read_audio_packet);
-                });
-            }
-        }
-        
-        if (isKeyFrame == 1) {
-            FrameInfo *frame = (FrameInfo *)malloc(sizeof(FrameInfo));
-            frame->type = type;
-            frame->frameLen = info->length;
-            frame->pBuf = new unsigned char[info->length];
-            frame->width = info->width;
-            frame->height = info->height;
-            // 毫秒为单位(1秒=1000毫秒 1秒=1000000微秒)
-            //            frame->timeStamp = info->timestamp_sec + (float)(info->timestamp_usec / 1000.0) / 1000.0;
-            frameInfo->timeStamp = info->timestamp_sec * 1000 + info->timestamp_usec / 1000.0;
-            
-            memcpy(frame->pBuf, pBuf, info->length);
-            
-            if (type == EASY_SDK_AUDIO_FRAME_FLAG) {
-                //                pthread_mutex_lock(&mutexRecordFrame);    // 加锁
-                //                recordAudioFrameSet.insert(frame);// 根据时间戳排序
-                //                pthread_mutex_unlock(&mutexRecordFrame);  // 解锁
-                
-                // 暂时不录制音频
-                delete []frame->pBuf;
-                delete frame;
-            }
-            
-            if (type == CAREYE_VFRAME_FLAG &&    // EASY_SDK_VIDEO_FRAME_FLAG视频帧标志
-                info->codec == CAREYE_VCODE_H264) { // H264视频编码
-                pthread_mutex_lock(&mutexRecordFrame);    // 加锁
-                recordVideoFrameSet.insert(frame);// 根据时间戳排序
-                pthread_mutex_unlock(&mutexRecordFrame);  // 解锁
-            }
-        }
-    }
-    */
 }
 
 #pragma mark ====================== GPUDecoderDelegate  ===================

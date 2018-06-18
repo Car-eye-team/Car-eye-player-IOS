@@ -11,8 +11,9 @@
 #import "CarEyeRTSPClientAPI.h"
 #import "CarEyeAudioPlayer.h"
 
-@interface PlayerViewController ()
-//@property (strong, nonatomic)  ;
+@interface PlayerViewController ()<ControlBarDelegate>
+@property (nonatomic, copy) NSString * currenUrl;
+
 
 @end
 
@@ -25,7 +26,9 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addAction)];
     self.playerView.audioPlaying = YES;
     self.navigationItem.rightBarButtonItem = item;
-    
+    self.playerView.ctrBar.delegate = self;
+//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+//    [self.playerView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +41,7 @@
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UITextField *tf = alertCtr.textFields.firstObject;
         NSString* url = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        wself.currenUrl = url;
         [wself.playerView renderWithURL:url];
         [[CarEyeAudioPlayer sharedInstance] activateAudioSession];
     }];
@@ -47,18 +51,105 @@
     [alertCtr addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.placeholder = @"rtsp://";
         textField.text = @"rtsp://184.72.239.149/vod/mp4://BigBuckBunny_175k.mov";
+        wself.currenUrl = textField.text;
     }];
     [self presentViewController:alertCtr animated:YES completion:nil];
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark ====================== ControlBarDelegate  ===================
+- (void)didClickToFullScreen:(BOOL)isFulling { // 点击全屏
+    if (isFulling) {
+        [self enterFullscreen];
+    }else{
+        [self exitFullscreen];
+    }
+}
+- (void)didClickToPause:(BOOL)isPausing {
+    if (isPausing) {
+        [self.playerView stopRender];
+    }else {
+        [self.playerView renderWithURL:self.currenUrl];
+    }
+}
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        if (self.playerView.state == PlayViewStateSmall) {
+            [self enterFullscreen];
+        }
+        else if (self.playerView.state == PlayViewStateFullscreen) {
+            [self exitFullscreen];
+        }
+    }
+}
+
+
+- (void)enterFullscreen {
+    
+    if (self.playerView.state != PlayViewStateSmall) {
+        return;
+    }
+    
+    self.playerView.state = PlayViewStateAnimating;
+    
+    /*
+     * 记录进入全屏前的parentView和frame
+     */
+    self.playerView.playViewParentView = self.playerView.superview;
+    self.playerView.playViewFrame = self.playerView.frame;
+    
+    /*
+     * PlayView移到window上
+     */
+    CGRect rectInWindow = [self.playerView convertRect:self.playerView.bounds toView:[UIApplication sharedApplication].keyWindow];
+    [self.playerView removeFromSuperview];
+    self.playerView.frame = rectInWindow;
+    [[UIApplication sharedApplication].keyWindow addSubview:self.playerView];
+    
+    /*
+     * 执行动画
+     */
+    [UIView animateWithDuration:0.5 animations:^{
+        self.playerView.transform = CGAffineTransformMakeRotation(M_PI_2);
+        self.playerView.bounds = CGRectMake(0, 0, CGRectGetHeight(self.playerView.superview.bounds), CGRectGetWidth(self.playerView.superview.bounds));
+        self.playerView.center = CGPointMake(CGRectGetMidX(self.playerView.superview.bounds), CGRectGetMidY(self.playerView.superview.bounds));
+    } completion:^(BOOL finished) {
+        self.playerView.state = PlayViewStateFullscreen;
+    }];
+    
+    [self refreshStatusBarOrientation:UIInterfaceOrientationLandscapeRight];
+}
+
+- (void)exitFullscreen {
+    
+    if (self.playerView.state != PlayViewStateFullscreen) {
+        return;
+    }
+    
+    self.playerView.state = PlayViewStateAnimating;
+    
+    CGRect frame = [self.playerView.playViewParentView convertRect:self.playerView.playViewFrame toView:[UIApplication sharedApplication].keyWindow];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.playerView.transform = CGAffineTransformIdentity;
+        self.playerView.frame = frame;
+    } completion:^(BOOL finished) {
+        /*
+         * PlayView回到小屏位置
+         */
+        [self.playerView removeFromSuperview];
+        self.playerView.frame = self.playerView.playViewFrame;
+        [self.playerView.playViewParentView addSubview:self.playerView];
+        self.playerView.state = PlayViewStateSmall;
+    }];
+    
+    [self refreshStatusBarOrientation:UIInterfaceOrientationPortrait];
+}
+
+- (void)refreshStatusBarOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    [[UIApplication sharedApplication] setStatusBarOrientation:interfaceOrientation animated:YES];
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
 
 @end
 

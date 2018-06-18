@@ -11,6 +11,10 @@
 #import "RTSPStreamReader.h"
 #import "KxMovieDecoder.h"
 #import "CarEyeAudioPlayer.h"
+#import "Masonry.h"
+
+
+
 @interface PlayerView()
 @property (strong, nonatomic) RTSPStreamReader *reader;
 @property (strong, nonatomic) KxMovieGLView *glView;
@@ -32,8 +36,18 @@
     [super awakeFromNib];
     self.reader = [[RTSPStreamReader alloc] init];
     self.backgroundColor = [UIColor blackColor];
-    _glView = [[KxMovieGLView alloc] initWithFrame:self.bounds];
+    if ([self.subviews.lastObject isKindOfClass:[ControlBar class]]) {
+        self.ctrBar = (ControlBar *)self.subviews.lastObject;
+    }
+    _glView = [[KxMovieGLView alloc] initWithFrame:CGRectMake(0, 0, 240, 400)];
     [self addSubview:_glView];
+    [self bringSubviewToFront:self.ctrBar];
+//    [_glView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.mas_top);
+//        make.bottom.equalTo(self.mas_bottom);
+//        make.left.equalTo(self.mas_left);
+//        make.right.equalTo(self.mas_right);
+//    }];
     _videoFrames = [NSMutableArray array];
     _audioFrames = [NSMutableArray array];
     __weak PlayerView *weakSelf = self;
@@ -51,6 +65,10 @@
     
     
 }
+- (void)layoutSubviews {
+    _glView.frame = self.bounds;
+}
+
 - (instancetype)init {
     _tickCorrectionTime = 0;
     _tickCorretionPosition = 0;
@@ -89,6 +107,14 @@
         
     };
     [self.reader startWithURL:url];
+}
+- (void)stopRender {
+    // 关闭前，停止录像
+    if (self.reader) {
+        [self.reader stop];
+        [self.glView flush];
+        self.reader = nil;
+    }
 }
 
 
