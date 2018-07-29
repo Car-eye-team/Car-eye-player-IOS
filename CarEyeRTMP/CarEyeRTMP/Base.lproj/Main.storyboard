@@ -75,13 +75,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="播放" id="opd-VL-v82">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="LMT-Rb-ig5">
-                            <connections>
-                                <action selector="addNewUrl:" destination="BYZ-38-t0r" id="q0i-Lp-ot9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="播放" id="opd-VL-v82"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

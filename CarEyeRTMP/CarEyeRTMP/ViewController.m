@@ -53,6 +53,8 @@
     [self.view addSubview:self.playerView1];
     [self.view addSubview:self.playerView2];
     [self.view addSubview:self.playerView3];
+    
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 - (CarEyePlayerView *)createPlayerViewWithFrame:(CGRect)frame {
@@ -88,23 +90,93 @@
         AppDelegate *appd = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appd.allowRotate = YES;
         [UIDevice switchOrientation:UIInterfaceOrientationLandscapeRight];
+        [self enterFullscreen:view];
     }else{
         AppDelegate *appd = (AppDelegate *)[UIApplication sharedApplication].delegate;
         appd.allowRotate = NO;
         [UIDevice switchOrientation:UIInterfaceOrientationPortrait];
 
+        [self exitFullscreen:view];
     }
 }
 
+
+
 #pragma mark ====================== fullScreen  ===================
 
+- (void)enterFullscreen:(CarEyePlayerView *)playerView {
+    
+    if (playerView.state != CarEyePlayViewStateSmall) {
+        return;
+    }
+    
+    playerView.state = CarEyePlayViewStateAnimating;
+    /*
+     * PlayView移到window上
+     */
+    CGRect rectInWindow = [playerView convertRect:playerView.bounds toView:[UIApplication sharedApplication].keyWindow];
+    [playerView removeFromSuperview];
+    playerView.frame = rectInWindow;
+    [[UIApplication sharedApplication].keyWindow addSubview:playerView];
+    
+    /*
+     * 执行动画
+     */
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    [UIView animateWithDuration:0.5 animations:^{
+//        playerView.transform = CGAffineTransformMakeRotation(M_PI_2);
+        playerView.bounds = screenBounds;
+        playerView.center = CGPointMake(CGRectGetMidX(screenBounds), CGRectGetMidY(screenBounds));
+    } completion:^(BOOL finished) {
+        playerView.state = CarEyePlayViewStateFullscreen;
+    }];
+    
+    [self refreshStatusBarOrientation:UIInterfaceOrientationLandscapeRight];
+}
+
+- (void)exitFullscreen:(CarEyePlayerView *)playerView {
+    
+    if (playerView.state != CarEyePlayViewStateFullscreen) {
+        return;
+    }
+    
+    playerView.state = CarEyePlayViewStateAnimating;
+    
+    CGRect frame = [self.view convertRect:playerView.frameBeforeFull toView:[UIApplication sharedApplication].keyWindow];
+    [UIView animateWithDuration:0.5 animations:^{
+//        playerView.transform = CGAffineTransformIdentity;
+        playerView.frame = frame;
+    } completion:^(BOOL finished) {
+        /*
+         * PlayView回到小屏位置
+         */
+        [playerView removeFromSuperview];
+        playerView.frame = playerView.frameBeforeFull;
+        [self.view addSubview:playerView];
+        playerView.state = CarEyePlayViewStateSmall;
+    }];
+    
+//    [self refreshStatusBarOrientation:UIInterfaceOrientationPortrait];
+}
+
+- (void)refreshStatusBarOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    [[UIApplication sharedApplication] setStatusBarOrientation:interfaceOrientation animated:YES];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+//    [self.player0 prepareToPlay];
+//    [self.player1 prepareToPlay];
+//    [self.player2 prepareToPlay];
+//    [self.player3 prepareToPlay];
+    
+    
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    
+//    [self.player shutdown];
+//    [self removeMovieNotificationObservers];
 }
 #pragma mark Remove Movie Notification Handlers
 

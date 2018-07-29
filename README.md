@@ -4,16 +4,15 @@
 * 音视频播放
 
 * 断开重连
+## • 运行说明：
+
+  下载demo，运行 双击CarEyePlayer.xcworkspace 文件，内含carEyeRTSPPlayer.xcodeproj 工程文件和CarEyeRTMP.xcodeproj 工程文件，前者为 RTSP 播放客户端，后者为RTMP 协议播放客户端（即将支持RTMP推流）,只支持真机运行，故运行demo时请使用真机，不要使用模拟器。否则编译失败。
 
   ## 一、RTSP 视频流播放
 
   #### • car-eye RTSP 播放器目前支持H.264**，**H.265**，**MPEG4**，**MJPEG 视频软硬解码，音频方面支持AAC、G711A,G711U,G726等。
 
-  #### • 运行说明：
-
-  下载demo，运行 双击CarEyePlayer.xcworkspace 文件，内含carEyeRTSPPlayer.xcodeproj 工程文件，之后将会支持 RTMP 视频流播放，使用同一个workspace 管理
-
-  音频软解编码部分依赖ffmpeg，只支持真机运行，故运行demo时请使用真机，不要使用模拟器。否则编译失败。
+  
 
   运行截图：
 
@@ -63,6 +62,23 @@ CarEye_RtspStart(CarEye_RTSP_Handle handle, int channelId, char *url,
 
 释放句柄 CarEye_RtspRelease(CarEye_RTSP_Handle *handle);  
 
+## 二、RTMP 客户端
+  RTMP 客户端分为两个主要功能部分，播放端和推流端。
+  播放端基于ijkplayer，支持软解码和硬解码，支持大部分的音视频编码格式，支持多路视频同时播放。
+  运行截图：
+  ![snapshot2](snapshot2.png)
+  ![snapshot3](snapshot3.png)
+
+
+
+# Car-eye-player 播放器系列
+
+Car-eye-player-rtsp android你扫描二维码下载
+
+
+![QRCode](二维码.png)
+
+car-eye-player-windows: https://github.com/Car-eye-team/car-eye-player-windows
 
 
 # 联系我们
