@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CarEyeRTMP/CarEyeRTMP.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CarEyeRTSPPlayer/carEyeRTSPPlayer/carEyeRTSPPlayer.xcodeproj">
    </FileRef>
 </Workspace>

@@ -22,7 +22,7 @@
  
 */
 typedef enum : int {
-    GPUDecoder_NALU_TypeNoDivide = 1, // 非IDR图像中不采用数据划分的片段
+    GPUDecoder_NALU_TypeNoDivide = 1, // 非IDR图像中不采用数据划分的片段，（有说法是P 帧？）
     GPUDecoder_NALU_TypeDivideA  = 2, // 非IDR 图像中A类数据划分片段
     GPUDecoder_NALU_TypeDivideB  = 3, // 非IDR 图像中B类数据划分片段
     GPUDecoder_NALU_TypeDivideC  = 4, // 非IDR 图像中C类数据划分片段
@@ -438,7 +438,7 @@ static inline void getXps(unsigned char *data, int offset, int length, int type,
         return -1;
     }
     
-    int nalu_type = ((uint8_t)*(pTemp + nDiff) & 0x1F);
+    int nalu_type = ((uint8_t)*(pTemp + nDiff) & 0x1F); // 保留第一个字节
     
     // 非IDR图像的片、IDR图像的片
     if (nalu_type == 1 || nalu_type == 5) {
