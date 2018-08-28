@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C630D49C210DBDBB0069F1DF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C630D499210DBDBB0069F1DF /* IJKMediaFramework.framework */; };
-		C630D49D210DBDBB0069F1DF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C630D49B210DBDBB0069F1DF /* IJKMediaFramework.framework */; };
+		C620393F21358B1F00C31C87 /* RecordEntityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C620393D21358B1F00C31C87 /* RecordEntityCell.m */; };
+		C620394021358B1F00C31C87 /* RecordEntityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C620393E21358B1F00C31C87 /* RecordEntityCell.xib */; };
+		C683E568212B11E20050D7F4 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C683E53D212AFDAF0050D7F4 /* IJKMediaFramework.framework */; };
 		C69525CD21049D4500BF4FA8 /* PusherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69525CB21049D4500BF4FA8 /* PusherViewController.m */; };
 		C69525D5210C031A00BF4FA8 /* CarEyePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C69525D4210C031A00BF4FA8 /* CarEyePlayerView.m */; };
 		C69525DB210C039E00BF4FA8 /* ControlBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C69525D8210C039D00BF4FA8 /* ControlBar.xib */; };
@@ -26,6 +27,11 @@
 		C6952606210C4D4600BF4FA8 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C69525FB210C4D4600BF4FA8 /* MASViewConstraint.m */; };
 		C6952607210C4D4600BF4FA8 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = C69525FC210C4D4600BF4FA8 /* MASViewAttribute.m */; };
 		C6952608210C4D4600BF4FA8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C69525FD210C4D4600BF4FA8 /* Info.plist */; };
+		C6A26CEA213593A9009AF887 /* RecordPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A26CE9213593A9009AF887 /* RecordPlayerViewController.m */; };
+		C6A5CE01212C52BC00B4B20E /* PathTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A5CE00212C52BC00B4B20E /* PathTool.m */; };
+		C6A5CE052132F0BF00B4B20E /* RecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A5CE042132F0BF00B4B20E /* RecordEntity.m */; };
+		C6A5CE0B2132F3CB00B4B20E /* RecordListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A5CE0A2132F3CB00B4B20E /* RecordListViewController.m */; };
+		C6A5CE112132FE1A00B4B20E /* RecordEntityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A5CE102132FE1A00B4B20E /* RecordEntityListViewController.m */; };
 		C6FEC30F2100C12B00BDBE02 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEC30E2100C12B00BDBE02 /* AppDelegate.m */; };
 		C6FEC3122100C12B00BDBE02 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6FEC3112100C12B00BDBE02 /* ViewController.m */; };
 		C6FEC3152100C12B00BDBE02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6FEC3132100C12B00BDBE02 /* Main.storyboard */; };
@@ -46,9 +52,62 @@
 		C6FEC3562100CAA900BDBE02 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6FEC3552100CAA900BDBE02 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C683E53C212AFDAF0050D7F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E654EA8A1B6B27E600B0F2D0;
+			remoteInfo = IJKMediaFramework;
+		};
+		C683E53E212AFDAF0050D7F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5450B0431E63EA4300568494;
+			remoteInfo = IJKMediaFrameworkWithSSL;
+		};
+		C683E540212AFDAF0050D7F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E654EA941B6B27E600B0F2D0;
+			remoteInfo = IJKMediaFrameworkTests;
+		};
+		C683E561212B0E4B0050D7F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E654EA891B6B27E600B0F2D0;
+			remoteInfo = IJKMediaFramework;
+		};
+		C683E566212B11AF0050D7F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E654EA891B6B27E600B0F2D0;
+			remoteInfo = IJKMediaFramework;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C683E553212B089B0050D7F4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		C630D499210DBDBB0069F1DF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
-		C630D49B210DBDBB0069F1DF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		C620393C21358B1F00C31C87 /* RecordEntityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordEntityCell.h; sourceTree = "<group>"; };
+		C620393D21358B1F00C31C87 /* RecordEntityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordEntityCell.m; sourceTree = "<group>"; };
+		C620393E21358B1F00C31C87 /* RecordEntityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordEntityCell.xib; sourceTree = "<group>"; };
+		C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaPlayer.xcodeproj; path = "../../../../git/ijkplayer-ios/ios/IJKMediaPlayer/IJKMediaPlayer.xcodeproj"; sourceTree = "<group>"; };
 		C69525CB21049D4500BF4FA8 /* PusherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PusherViewController.m; sourceTree = "<group>"; };
 		C69525CC21049D4500BF4FA8 /* PusherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PusherViewController.h; sourceTree = "<group>"; };
 		C69525D3210C031A00BF4FA8 /* CarEyePlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarEyePlayerView.h; sourceTree = "<group>"; };
@@ -86,6 +145,16 @@
 		C69525FC210C4D4600BF4FA8 /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		C69525FD210C4D4600BF4FA8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6952609210C4DDA00BF4FA8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C6A26CE8213593A9009AF887 /* RecordPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordPlayerViewController.h; sourceTree = "<group>"; };
+		C6A26CE9213593A9009AF887 /* RecordPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordPlayerViewController.m; sourceTree = "<group>"; };
+		C6A5CDFF212C52BC00B4B20E /* PathTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PathTool.h; sourceTree = "<group>"; };
+		C6A5CE00212C52BC00B4B20E /* PathTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PathTool.m; sourceTree = "<group>"; };
+		C6A5CE032132F0BF00B4B20E /* RecordEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordEntity.h; sourceTree = "<group>"; };
+		C6A5CE042132F0BF00B4B20E /* RecordEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordEntity.m; sourceTree = "<group>"; };
+		C6A5CE092132F3CB00B4B20E /* RecordListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordListViewController.h; sourceTree = "<group>"; };
+		C6A5CE0A2132F3CB00B4B20E /* RecordListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordListViewController.m; sourceTree = "<group>"; };
+		C6A5CE0F2132FE1A00B4B20E /* RecordEntityListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordEntityListViewController.h; sourceTree = "<group>"; };
+		C6A5CE102132FE1A00B4B20E /* RecordEntityListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordEntityListViewController.m; sourceTree = "<group>"; };
 		C6FEC30A2100C12B00BDBE02 /* CarEyeRTMP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarEyeRTMP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6FEC30D2100C12B00BDBE02 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C6FEC30E2100C12B00BDBE02 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -115,10 +184,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C683E568212B11E20050D7F4 /* IJKMediaFramework.framework in Frameworks */,
 				C6FEC3562100CAA900BDBE02 /* QuartzCore.framework in Frameworks */,
 				C6FEC3542100CA9C00BDBE02 /* OpenGLES.framework in Frameworks */,
 				C6FEC3522100CA9200BDBE02 /* MobileCoreServices.framework in Frameworks */,
-				C630D49D210DBDBB0069F1DF /* IJKMediaFramework.framework in Frameworks */,
 				C6FEC3502100CA6C00BDBE02 /* MediaPlayer.framework in Frameworks */,
 				C6FEC34E2100CA6100BDBE02 /* libz.tbd in Frameworks */,
 				C6FEC34C2100CA4900BDBE02 /* libbz2.tbd in Frameworks */,
@@ -129,36 +198,20 @@
 				C6FEC3422100C9FF00BDBE02 /* VideoToolbox.framework in Frameworks */,
 				C6FEC3402100C9F700BDBE02 /* AudioToolbox.framework in Frameworks */,
 				C6FEC33D2100C89700BDBE02 /* libc++.tbd in Frameworks */,
-				C630D49C210DBDBB0069F1DF /* IJKMediaFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C630D497210DBDBB0069F1DF /* IJKMediaFramework */ = {
+		C683E537212AFDAF0050D7F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C630D498210DBDBB0069F1DF /* Release */,
-				C630D49A210DBDBB0069F1DF /* Debug */,
+				C683E53D212AFDAF0050D7F4 /* IJKMediaFramework.framework */,
+				C683E53F212AFDAF0050D7F4 /* IJKMediaFrameworkWithSSL.framework */,
+				C683E541212AFDAF0050D7F4 /* IJKMediaFrameworkTests.xctest */,
 			);
-			path = IJKMediaFramework;
-			sourceTree = "<group>";
-		};
-		C630D498210DBDBB0069F1DF /* Release */ = {
-			isa = PBXGroup;
-			children = (
-				C630D499210DBDBB0069F1DF /* IJKMediaFramework.framework */,
-			);
-			path = Release;
-			sourceTree = "<group>";
-		};
-		C630D49A210DBDBB0069F1DF /* Debug */ = {
-			isa = PBXGroup;
-			children = (
-				C630D49B210DBDBB0069F1DF /* IJKMediaFramework.framework */,
-			);
-			path = Debug;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		C69525CA21049D4500BF4FA8 /* Pusher */ = {
@@ -201,7 +254,6 @@
 		C69525E2210C4D4600BF4FA8 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				C630D497210DBDBB0069F1DF /* IJKMediaFramework */,
 				C69525E3210C4D4600BF4FA8 /* Masonry */,
 			);
 			path = Vendor;
@@ -240,9 +292,51 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		C6A5CDFE212C529200B4B20E /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				C6A5CDFF212C52BC00B4B20E /* PathTool.h */,
+				C6A5CE00212C52BC00B4B20E /* PathTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		C6A5CE022132F06E00B4B20E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C6A5CE032132F0BF00B4B20E /* RecordEntity.h */,
+				C6A5CE042132F0BF00B4B20E /* RecordEntity.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C6A5CE082132F37C00B4B20E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C6A5CE092132F3CB00B4B20E /* RecordListViewController.h */,
+				C6A5CE0A2132F3CB00B4B20E /* RecordListViewController.m */,
+				C6A5CE0F2132FE1A00B4B20E /* RecordEntityListViewController.h */,
+				C6A5CE102132FE1A00B4B20E /* RecordEntityListViewController.m */,
+				C6A26CE8213593A9009AF887 /* RecordPlayerViewController.h */,
+				C6A26CE9213593A9009AF887 /* RecordPlayerViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C6A5CE1321358A9D00B4B20E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C620393C21358B1F00C31C87 /* RecordEntityCell.h */,
+				C620393D21358B1F00C31C87 /* RecordEntityCell.m */,
+				C620393E21358B1F00C31C87 /* RecordEntityCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C6FEC3012100C12B00BDBE02 = {
 			isa = PBXGroup;
 			children = (
+				C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */,
 				C6FEC30C2100C12B00BDBE02 /* CarEyeRTMP */,
 				C6FEC30B2100C12B00BDBE02 /* Products */,
 				C6FEC33B2100C89700BDBE02 /* Frameworks */,
@@ -260,6 +354,9 @@
 		C6FEC30C2100C12B00BDBE02 /* CarEyeRTMP */ = {
 			isa = PBXGroup;
 			children = (
+				C6A5CE082132F37C00B4B20E /* Controllers */,
+				C6A5CE022132F06E00B4B20E /* Models */,
+				C6A5CE1321358A9D00B4B20E /* Views */,
 				C6FEC35E2100D4FB00BDBE02 /* BaseClasses */,
 				C6FEC30D2100C12B00BDBE02 /* AppDelegate.h */,
 				C6FEC30E2100C12B00BDBE02 /* AppDelegate.m */,
@@ -274,6 +371,7 @@
 				C69525CE210B596B00BF4FA8 /* Player */,
 				C69525CA21049D4500BF4FA8 /* Pusher */,
 				C69525E2210C4D4600BF4FA8 /* Vendor */,
+				C6A5CDFE212C529200B4B20E /* Tool */,
 			);
 			path = CarEyeRTMP;
 			sourceTree = "<group>";
@@ -317,10 +415,13 @@
 				C6FEC3062100C12B00BDBE02 /* Sources */,
 				C6FEC3072100C12B00BDBE02 /* Frameworks */,
 				C6FEC3082100C12B00BDBE02 /* Resources */,
+				C683E553212B089B0050D7F4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C683E562212B0E4B0050D7F4 /* PBXTargetDependency */,
+				C683E567212B11AF0050D7F4 /* PBXTargetDependency */,
 			);
 			name = CarEyeRTMP;
 			productName = CarEyeRTMP;
@@ -352,6 +453,12 @@
 			mainGroup = C6FEC3012100C12B00BDBE02;
 			productRefGroup = C6FEC30B2100C12B00BDBE02 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C683E537212AFDAF0050D7F4 /* Products */;
+					ProjectRef = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C6FEC3092100C12B00BDBE02 /* CarEyeRTMP */,
@@ -359,12 +466,37 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		C683E53D212AFDAF0050D7F4 /* IJKMediaFramework.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IJKMediaFramework.framework;
+			remoteRef = C683E53C212AFDAF0050D7F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C683E53F212AFDAF0050D7F4 /* IJKMediaFrameworkWithSSL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = IJKMediaFrameworkWithSSL.framework;
+			remoteRef = C683E53E212AFDAF0050D7F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C683E541212AFDAF0050D7F4 /* IJKMediaFrameworkTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = IJKMediaFrameworkTests.xctest;
+			remoteRef = C683E540212AFDAF0050D7F4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		C6FEC3082100C12B00BDBE02 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C6FEC31A2100C12C00BDBE02 /* LaunchScreen.storyboard in Resources */,
+				C620394021358B1F00C31C87 /* RecordEntityCell.xib in Resources */,
 				C69525DB210C039E00BF4FA8 /* ControlBar.xib in Resources */,
 				C6952608210C4D4600BF4FA8 /* Info.plist in Resources */,
 				C6FEC3152100C12B00BDBE02 /* Main.storyboard in Resources */,
@@ -384,8 +516,10 @@
 				C6952603210C4D4600BF4FA8 /* NSArray+MASAdditions.m in Sources */,
 				C69525E1210C3ACE00BF4FA8 /* UIDevice+CarEyeOrientation.m in Sources */,
 				C6952607210C4D4600BF4FA8 /* MASViewAttribute.m in Sources */,
+				C6A5CE052132F0BF00B4B20E /* RecordEntity.m in Sources */,
 				C69525D5210C031A00BF4FA8 /* CarEyePlayerView.m in Sources */,
 				C6952602210C4D4600BF4FA8 /* MASLayoutConstraint.m in Sources */,
+				C6A26CEA213593A9009AF887 /* RecordPlayerViewController.m in Sources */,
 				C6952604210C4D4600BF4FA8 /* View+MASAdditions.m in Sources */,
 				C6952600210C4D4600BF4FA8 /* MASCompositeConstraint.m in Sources */,
 				C6FEC31D2100C12C00BDBE02 /* main.m in Sources */,
@@ -393,13 +527,30 @@
 				C6FEC30F2100C12B00BDBE02 /* AppDelegate.m in Sources */,
 				C69525CD21049D4500BF4FA8 /* PusherViewController.m in Sources */,
 				C6952601210C4D4600BF4FA8 /* MASConstraintMaker.m in Sources */,
+				C620393F21358B1F00C31C87 /* RecordEntityCell.m in Sources */,
 				C69525FE210C4D4600BF4FA8 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				C6952605210C4D4600BF4FA8 /* MASConstraint.m in Sources */,
+				C6A5CE01212C52BC00B4B20E /* PathTool.m in Sources */,
 				C6952606210C4D4600BF4FA8 /* MASViewConstraint.m in Sources */,
+				C6A5CE0B2132F3CB00B4B20E /* RecordListViewController.m in Sources */,
+				C6A5CE112132FE1A00B4B20E /* RecordEntityListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C683E562212B0E4B0050D7F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IJKMediaFramework;
+			targetProxy = C683E561212B0E4B0050D7F4 /* PBXContainerItemProxy */;
+		};
+		C683E567212B11AF0050D7F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = IJKMediaFramework;
+			targetProxy = C683E566212B11AF0050D7F4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C6FEC3132100C12B00BDBE02 /* Main.storyboard */ = {
@@ -535,22 +686,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = S7PV3VT458;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CarEyeRTMP/Vendor/IJKMediaFramework/Debug",
+					"$(inherited)\n$(inherited)/**",
+					"/Users/sumbrilliance/Library/Developer/Xcode/DerivedData/CarEyePlayer-aftmvzbefxozkabbefuiwlgycvqf/Build/Products/Debug-iphoneos/**",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CarEyeRTMP/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/IJKMediaFramework/**";
 				INFOPLIST_FILE = CarEyeRTMP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.car-eye.CarEyeRTMP";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.car-eye.rtmp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f99e04d7-743c-4eed-9a6c-70bff6f6ecae";
+				PROVISIONING_PROFILE_SPECIFIER = rtmp_dev;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -558,22 +714,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = S7PV3VT458;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/CarEyeRTMP/Vendor/IJKMediaFramework/Release",
+					"$(inherited)\n$(inherited)/**",
+					"/Users/sumbrilliance/Library/Developer/Xcode/DerivedData/CarEyePlayer-aftmvzbefxozkabbefuiwlgycvqf/Build/Products/Debug-iphoneos/**",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CarEyeRTMP/PrefixHeader.pch";
+				HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/IJKMediaFramework/**";
 				INFOPLIST_FILE = CarEyeRTMP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "cn.car-eye.CarEyeRTMP";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.car-eye.rtmp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d6ebadc8-a2b9-420d-9337-ee0ec1a2ab79";
+				PROVISIONING_PROFILE_SPECIFIER = rtmp_dist;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};

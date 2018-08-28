@@ -7,15 +7,18 @@
 //
 
 #import "CarEyePlayerView.h"
-#import <IJKMediaFramework/IJKMediaFramework.h>
 #import "ControlBar.h"
 #import "Masonry.h"
+#import <IJKMediaFramework/IJKMediaFramework.h>
+#import "PathTool.h"
+#import "RecordEntity.h"
 @interface CarEyePlayerView()<ControlBarDelegate>
 @property (strong, nonatomic) id<IJKMediaPlayback> player;
 @property (strong, nonatomic) ControlBar *ctrBar;
 @property (strong, nonatomic) UIActivityIndicatorView *activity;
 @property (strong, nonatomic) UIButton *addPlayerBtn;
 @property (nonatomic, copy) NSString * url;
+@property (strong, nonatomic) dispatch_queue_t record_queue;
 
 
 @end
@@ -25,7 +28,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        
     }
     return self;
 }
@@ -62,6 +64,8 @@
     if (self = [super initWithFrame:frame]) {
         _frameBeforeFull = frame;
         [self initSubviews];
+        self.record_queue = dispatch_queue_create("cn.car-eye.record", DISPATCH_QUEUE_SERIAL);
+
     }
     return self;
 }
@@ -140,7 +144,7 @@
     }
 }
 #pragma mark ====================== ControlBarDelegate  ===================
-- (void)controlBar:(ControlBar *)ctlBar didClickToPause:(BOOL)isPausing {
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toPause:(BOOL)isPausing{
     if ([self.player isPlaying] && isPausing) {
         [self.player pause];
     }
@@ -149,12 +153,12 @@
     }
 }
 
-- (void)controlBar:(ControlBar *)ctlBar didClickToFullScreen:(BOOL)isFulling {
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toFullScreen:(BOOL)isFulling{
     if ([self.delegate respondsToSelector:@selector(carEyePlayerView:didClickToFull:)]) {
         [self.delegate carEyePlayerView:self didClickToFull:isFulling];
     }
 }
-- (void)controlBar:(ControlBar *)ctlBar didClickToOpenVoice:(BOOL)isToOpen {
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toOpenVoice:(BOOL)isToOpen{
     if (isToOpen) {
         [self.player setPlaybackVolume:1];
     }else {
@@ -162,7 +166,24 @@
     }
 }
 
-- (void)controlBar:(ControlBar *)ctlBar didClickToRecord:(BOOL)isToRecord {
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toRecord:(BOOL)isToRecord{
+    if (![self.player isPlaying]) {
+        btn.selected = NO;
+        return;
+    }
+    if (isToRecord) {
+        
+        dispatch_async(self.record_queue, ^{
+            RecordEntity *entity = [PathTool entityWithUrl:self.url];
+            [self.player startRecordInPath:entity.videoPath];
+            IJKFFMoviePlayerController *player = (IJKFFMoviePlayerController *)self.player;
+            [UIImagePNGRepresentation([player snapshot]) writeToFile:entity.snapshotPath atomically:YES];
+        });
+    }else {
+//        dispatch_async(self.record_queue, ^{
+            [self.player stopRecord];
+//        });
+    }
     
 }
 #pragma mark ====================== notification  ===================

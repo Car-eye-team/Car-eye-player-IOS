@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="G50-aX-UCw">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
                 <navigationController id="7Lo-oP-SYb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="播放端" image="play" id="UkP-lr-Nsy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cGC-we-Zlu">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -32,7 +32,7 @@
                 <navigationController id="jxB-LS-AdW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="推流端" image="upload" id="FZW-8O-Lb1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="d8K-hu-chI">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -52,7 +52,7 @@
                         <viewControllerLayoutGuide type="bottom" id="22v-7T-l18"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="z2h-dn-54n">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -71,11 +71,20 @@
                         <viewControllerLayoutGuide type="bottom" id="Spf-ff-GNs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="播放" id="opd-VL-v82"/>
+                    <navigationItem key="navigationItem" title="播放" id="opd-VL-v82">
+                        <barButtonItem key="rightBarButtonItem" image="history" style="plain" id="cnf-hv-9kx">
+                            <inset key="imageInsets" minX="5" minY="4" maxX="-5" maxY="-5"/>
+                            <inset key="largeContentSizeImageInsets" minX="4" minY="-1" maxX="0.0" maxY="-3"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="historyAction:" destination="BYZ-38-t0r" id="CzR-7z-VaI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,6 +110,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="history" width="32" height="32"/>
         <image name="play" width="32" height="32"/>
         <image name="upload" width="32" height="32"/>
     </resources>

@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 @class ControlBar;
 @protocol ControlBarDelegate <NSObject>
-- (void)controlBar:(ControlBar *)ctlBar didClickToPause:(BOOL)isPausing;
-- (void)controlBar:(ControlBar *)ctlBar didClickToOpenVoice:(BOOL)isToOpen;
-- (void)controlBar:(ControlBar *)ctlBar didClickToRecord:(BOOL)isToRecord;
-- (void)controlBar:(ControlBar *)ctlBar didClickToFullScreen:(BOOL)isFulling;
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toPause:(BOOL)isPausing;
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toOpenVoice:(BOOL)isToOpen;
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toRecord:(BOOL)isToRecord;
+- (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toFullScreen:(BOOL)isFulling;
 @end
 @interface ControlBar : UIView
 @property (weak, nonatomic) id <ControlBarDelegate> delegate;

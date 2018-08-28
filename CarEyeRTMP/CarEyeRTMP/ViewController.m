@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import <IJKMediaFramework/IJKMediaFramework.h>
 #import "CarEyePlayerView.h"
+#import "RecordListViewController.h"
 
 #define k_width [UIScreen mainScreen].bounds.size.width
 #define k_height [UIScreen mainScreen].bounds.size.height
@@ -100,8 +101,12 @@
     }
 }
 
+#pragma mark ====================== actions  ===================
 
-
+- (IBAction)historyAction:(UIBarButtonItem *)sender {
+    RecordListViewController *vc = [[RecordListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark ====================== fullScreen  ===================
 
 - (void)enterFullscreen:(CarEyePlayerView *)playerView {
