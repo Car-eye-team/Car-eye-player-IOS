@@ -33,7 +33,7 @@ static NSString *recordList = @"recordList";
     NSString *addr = [url stringByReplacingOccurrencesOfString:@"/" withString:@""];
     addr = [addr stringByReplacingOccurrencesOfString:@":" withString:@""];
     addr = [addr stringByReplacingOccurrencesOfString:@"." withString:@""];
-    NSString *recordDir = [[self getDocumentDir] stringByAppendingString:addr];
+    NSString *recordDir = [[self getDocumentDir] stringByAppendingPathComponent:addr];
     if(![[NSFileManager defaultManager] fileExistsAtPath:recordDir]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:recordDir withIntermediateDirectories:YES attributes:nil error:nil];
         NSMutableArray *urls = [self recordUrls];
@@ -60,12 +60,18 @@ static NSString *recordList = @"recordList";
 
 + (NSMutableArray <NSString *> *)recordUrls {
     NSMutableArray *urls = [[NSUserDefaults standardUserDefaults] objectForKey:recordList];
-    if (urls == nil) {
-        urls = [NSMutableArray array];
-    }
-    return urls;
+    NSMutableArray *m_urls = [NSMutableArray array];
+
+        if ([urls isKindOfClass:[NSString class]]) {
+            [m_urls addObject:urls];
+        }else if([urls isKindOfClass:[NSArray class]]) {
+            for (NSString *url in urls) {
+                [m_urls addObject:url];
+            }
+        }
+    return m_urls;
 }
-+ (void)updateRecordList:(NSArray <NSString *> *)newList {
++ (void)updateRecordList:(NSMutableArray <NSString *> *)newList {
     [[NSUserDefaults standardUserDefaults] setObject:newList forKey:recordList];
 }
 // 某个url下的所有视频文件

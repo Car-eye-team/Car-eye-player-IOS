@@ -128,7 +128,7 @@
     //    [options setFormatOptionIntValue:2000000 forKey:@"analyzeduration"];
     //    [options setFormatOptionValue:@"nobuffer" forKey:@"fflags"];
     //    [options setFormatOptionIntValue:4096 forKey:@"probsize"];
-    
+    [options setPlayerOptionIntValue:1 forKey:@"framedrop"];
     IJKFFMoviePlayerController *player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:url withOptions:options];
     player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     player.view.frame = self.bounds;
@@ -146,7 +146,14 @@
 #pragma mark ====================== ControlBarDelegate  ===================
 - (void)controlBar:(ControlBar *)ctlBar didClickBtn:(UIButton *)btn toPause:(BOOL)isPausing{
     if ([self.player isPlaying] && isPausing) {
-        [self.player pause];
+        if (ctlBar.recordBtn.isSelected) {
+            [self.player stopRecord];
+            ctlBar.recordBtn.selected = NO;
+        }
+        if(ctlBar.voiceBtn.isSelected) {
+            ctlBar.recordBtn.selected = NO;
+        }
+        [self.player stop];
     }
     else {
         [self playerUrl:self.url];

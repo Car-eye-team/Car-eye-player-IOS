@@ -73,6 +73,12 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="fullBtn" destination="2pu-Y2-v4m" id="hs2-Ap-jN4"/>
+                <outlet property="playbtn" destination="fjn-cX-NMX" id="ArZ-kk-gCC"/>
+                <outlet property="recordBtn" destination="7Uq-Hp-PN5" id="2Vd-jH-njo"/>
+                <outlet property="voiceBtn" destination="ehT-aI-ADc" id="zJd-e4-gpI"/>
+            </connections>
             <point key="canvasLocation" x="143" y="5"/>
         </view>
     </objects>

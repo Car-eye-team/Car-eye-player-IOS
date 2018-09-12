@@ -16,5 +16,10 @@
 @end
 @interface ControlBar : UIView
 @property (weak, nonatomic) id <ControlBarDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *playbtn;
+@property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
+@property (weak, nonatomic) IBOutlet UIButton *recordBtn;
+@property (weak, nonatomic) IBOutlet UIButton *fullBtn;
+
 @end
 

@@ -20,11 +20,12 @@
     [super viewDidLoad];
     self.navigationItem.title = @"录像记录";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.records = [PathTool recordUrls];
-    if (!self.records) {
-        self.records = [NSMutableArray array];
-    }
     
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.records = [PathTool recordUrls];
+    [self.tableView reloadData];
 }
 #pragma mark - UITableViewDatasource
 

@@ -12,6 +12,11 @@
 - (void)didClickToFullScreen:(BOOL)isFulling;
 @end
 @interface ControlBar : UIView
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
+@property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
+@property (weak, nonatomic) IBOutlet UIButton *recordBt;
+@property (weak, nonatomic) IBOutlet UIButton *fullBtn;
+
 @property (weak, nonatomic) id <ControlBarDelegate> delegate;
 @end
 
