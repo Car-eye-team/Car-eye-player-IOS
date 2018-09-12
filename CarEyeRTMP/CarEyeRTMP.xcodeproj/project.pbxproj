@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C61E34F121497E7D00B7E249 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C61E34EA21497DF200B7E249 /* IJKMediaFramework.framework */; };
 		C620393F21358B1F00C31C87 /* RecordEntityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C620393D21358B1F00C31C87 /* RecordEntityCell.m */; };
 		C620394021358B1F00C31C87 /* RecordEntityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C620393E21358B1F00C31C87 /* RecordEntityCell.xib */; };
-		C683E568212B11E20050D7F4 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C683E53D212AFDAF0050D7F4 /* IJKMediaFramework.framework */; };
 		C69525CD21049D4500BF4FA8 /* PusherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C69525CB21049D4500BF4FA8 /* PusherViewController.m */; };
 		C69525D5210C031A00BF4FA8 /* CarEyePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C69525D4210C031A00BF4FA8 /* CarEyePlayerView.m */; };
 		C69525DB210C039E00BF4FA8 /* ControlBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C69525D8210C039D00BF4FA8 /* ControlBar.xib */; };
@@ -53,37 +53,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C683E53C212AFDAF0050D7F4 /* PBXContainerItemProxy */ = {
+		C61E34E921497DF200B7E249 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			containerPortal = C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E654EA8A1B6B27E600B0F2D0;
 			remoteInfo = IJKMediaFramework;
 		};
-		C683E53E212AFDAF0050D7F4 /* PBXContainerItemProxy */ = {
+		C61E34EB21497DF200B7E249 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			containerPortal = C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 5450B0431E63EA4300568494;
 			remoteInfo = IJKMediaFrameworkWithSSL;
 		};
-		C683E540212AFDAF0050D7F4 /* PBXContainerItemProxy */ = {
+		C61E34ED21497DF200B7E249 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			containerPortal = C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E654EA941B6B27E600B0F2D0;
 			remoteInfo = IJKMediaFrameworkTests;
 		};
-		C683E561212B0E4B0050D7F4 /* PBXContainerItemProxy */ = {
+		C61E34EF21497E4E00B7E249 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E654EA891B6B27E600B0F2D0;
-			remoteInfo = IJKMediaFramework;
-		};
-		C683E566212B11AF0050D7F4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+			containerPortal = C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = E654EA891B6B27E600B0F2D0;
 			remoteInfo = IJKMediaFramework;
@@ -104,10 +97,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaPlayer.xcodeproj; path = "CarEyeRTMP/ijkplayer-ios/ios/IJKMediaPlayer/IJKMediaPlayer.xcodeproj"; sourceTree = "<group>"; };
 		C620393C21358B1F00C31C87 /* RecordEntityCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordEntityCell.h; sourceTree = "<group>"; };
 		C620393D21358B1F00C31C87 /* RecordEntityCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordEntityCell.m; sourceTree = "<group>"; };
 		C620393E21358B1F00C31C87 /* RecordEntityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordEntityCell.xib; sourceTree = "<group>"; };
-		C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = IJKMediaPlayer.xcodeproj; path = "../../../../git/ijkplayer-ios/ios/IJKMediaPlayer/IJKMediaPlayer.xcodeproj"; sourceTree = "<group>"; };
 		C69525CB21049D4500BF4FA8 /* PusherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PusherViewController.m; sourceTree = "<group>"; };
 		C69525CC21049D4500BF4FA8 /* PusherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PusherViewController.h; sourceTree = "<group>"; };
 		C69525D3210C031A00BF4FA8 /* CarEyePlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarEyePlayerView.h; sourceTree = "<group>"; };
@@ -184,7 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C683E568212B11E20050D7F4 /* IJKMediaFramework.framework in Frameworks */,
+				C61E34F121497E7D00B7E249 /* IJKMediaFramework.framework in Frameworks */,
 				C6FEC3562100CAA900BDBE02 /* QuartzCore.framework in Frameworks */,
 				C6FEC3542100CA9C00BDBE02 /* OpenGLES.framework in Frameworks */,
 				C6FEC3522100CA9200BDBE02 /* MobileCoreServices.framework in Frameworks */,
@@ -204,12 +197,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C683E537212AFDAF0050D7F4 /* Products */ = {
+		C61E34E421497DF200B7E249 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C683E53D212AFDAF0050D7F4 /* IJKMediaFramework.framework */,
-				C683E53F212AFDAF0050D7F4 /* IJKMediaFrameworkWithSSL.framework */,
-				C683E541212AFDAF0050D7F4 /* IJKMediaFrameworkTests.xctest */,
+				C61E34EA21497DF200B7E249 /* IJKMediaFramework.framework */,
+				C61E34EC21497DF200B7E249 /* IJKMediaFrameworkWithSSL.framework */,
+				C61E34EE21497DF200B7E249 /* IJKMediaFrameworkTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -336,7 +329,7 @@
 		C6FEC3012100C12B00BDBE02 = {
 			isa = PBXGroup;
 			children = (
-				C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */,
+				C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */,
 				C6FEC30C2100C12B00BDBE02 /* CarEyeRTMP */,
 				C6FEC30B2100C12B00BDBE02 /* Products */,
 				C6FEC33B2100C89700BDBE02 /* Frameworks */,
@@ -420,8 +413,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C683E562212B0E4B0050D7F4 /* PBXTargetDependency */,
-				C683E567212B11AF0050D7F4 /* PBXTargetDependency */,
+				C61E34F021497E4E00B7E249 /* PBXTargetDependency */,
 			);
 			name = CarEyeRTMP;
 			productName = CarEyeRTMP;
@@ -455,8 +447,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C683E537212AFDAF0050D7F4 /* Products */;
-					ProjectRef = C683E536212AFDAF0050D7F4 /* IJKMediaPlayer.xcodeproj */;
+					ProductGroup = C61E34E421497DF200B7E249 /* Products */;
+					ProjectRef = C61E34E321497DF200B7E249 /* IJKMediaPlayer.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -467,25 +459,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C683E53D212AFDAF0050D7F4 /* IJKMediaFramework.framework */ = {
+		C61E34EA21497DF200B7E249 /* IJKMediaFramework.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = IJKMediaFramework.framework;
-			remoteRef = C683E53C212AFDAF0050D7F4 /* PBXContainerItemProxy */;
+			remoteRef = C61E34E921497DF200B7E249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C683E53F212AFDAF0050D7F4 /* IJKMediaFrameworkWithSSL.framework */ = {
+		C61E34EC21497DF200B7E249 /* IJKMediaFrameworkWithSSL.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = IJKMediaFrameworkWithSSL.framework;
-			remoteRef = C683E53E212AFDAF0050D7F4 /* PBXContainerItemProxy */;
+			remoteRef = C61E34EB21497DF200B7E249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C683E541212AFDAF0050D7F4 /* IJKMediaFrameworkTests.xctest */ = {
+		C61E34EE21497DF200B7E249 /* IJKMediaFrameworkTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = IJKMediaFrameworkTests.xctest;
-			remoteRef = C683E540212AFDAF0050D7F4 /* PBXContainerItemProxy */;
+			remoteRef = C61E34ED21497DF200B7E249 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -540,15 +532,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C683E562212B0E4B0050D7F4 /* PBXTargetDependency */ = {
+		C61E34F021497E4E00B7E249 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = IJKMediaFramework;
-			targetProxy = C683E561212B0E4B0050D7F4 /* PBXContainerItemProxy */;
-		};
-		C683E567212B11AF0050D7F4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = IJKMediaFramework;
-			targetProxy = C683E566212B11AF0050D7F4 /* PBXContainerItemProxy */;
+			targetProxy = C61E34EF21497E4E00B7E249 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

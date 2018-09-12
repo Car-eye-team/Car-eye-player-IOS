@@ -64,7 +64,22 @@ CarEye_RtspStart(CarEye_RTSP_Handle handle, int channelId, char *url,
 
 ## 二、RTMP 客户端
   RTMP 客户端分为两个主要功能部分，播放端和推流端。
-  播放端基于ijkplayer，支持软解码和硬解码，支持大部分的音视频编码格式，支持多路视频同时播放。
+  播放端基于ijkplayer，支持软解码和硬解码，支持大部分的音视频编码格式，支持多路视频同时播放。在ijkplayer基础上扩展了录制和截图功能，源码放在了这里：https://github.com/sumbrilliance/ijkplayer.git
+  ## • 运行说明：
+  	clone 项目后，内含CarEyeRTMP.xcodeproj工程，即为RTMP客户端。内含IJKMediaPlayer.xcodeproj，工程，由于此工程包含文件过大，因此未加入到CarEye的源码中，里面的IJKMediaPlayer工程将是空的。所以，需要先clone获得IJKMediaPlayer。
+  	clone和编译ijkplayer的过程比较漫长，你也可以直接下载careye编译好的IJKMediaFramework.framework文件(在car-eye-player-IOS第一层目录下，release版本)，导入其中，删除IJKMediaPlayer.xcodeproj的引用。
+  	以下为使用 IJKMediaPlayer.xcodeproj 的过程：
+  1. clone Car-eye-player 后，进入 car-eye-player/CarEyeRTMP/CarEyeRTMP/ 目录，根据 https://github.com/sumbrilliance/ijkplayer.git 中的编译说明，按以下顺序执行：
+    clone https://github.com/Car-eye-team/Car-eye-player-IOS.git
+    cd car-eye-player-IOS/CarEyeRTMP/CarEyeRTMP/
+    git clone https://github.com/Bilibili/ijkplayer.git  ijkplayer-ios
+    cd ijkplayer-ios
+    ./init-ios.sh
+    cd ios
+    ./compile-ffmpeg.sh clean
+    ../compile-ffmpeg.sh all
+
+  此步完成后，打开 CarEyePlayer.xcworkspace 文件即可
   运行截图：
   ![snapshot2](snapshot2.png)
   ![snapshot3](snapshot3.png)
