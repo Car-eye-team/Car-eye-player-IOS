@@ -1,5 +1,7 @@
 # Car-Eye 开源平台 iOS播放客户端
 
+ios APP 市场搜索 careyertmp
+
 目前支持：
 * 音视频播放
 
